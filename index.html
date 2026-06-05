@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #F7E7E7; /* Dark professional backdrop */
+            background: #F7E7E7; /* Dark professional backdrop */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,13 +25,21 @@
 
         /* Maximum Scale 2x2 Grid Container */
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px; /* Stronger spacing to balance the massive image scale */
-            width: 100%; /* Uses almost the entire width of the viewport */
-            max-width: 1800px; /* Pushed to ultra-wide limit */
-            padding: 10px;
-        }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "img1 img3"
+        "img2 img4";
+    gap: 20px;
+    width: 100%;
+    max-width: 1800px;
+    padding: 10px;
+}
+
+.item-1 { grid-area: img1; }
+.item-2 { grid-area: img2; }
+.item-3 { grid-area: img3; }
+.item-4 { grid-area: img4; }
 
         /* Massive Image Wrapper */
         .grid-item {
@@ -52,58 +60,53 @@
             object-fit: cover; 
             display: block;
         }
+		
 
         /* --- Custom Keyframe Animations --- */
 
-        /* Left Side Entry (Longer sweep distance for massive elements) */
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-350px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+    from {
+        opacity: 0;
+        transform: translateX(-400px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-        /* Right Side Entry (Longer sweep distance for massive elements) */
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(350px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(400px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-        /* --- Strict Sequential Timing --- */
+/* Left Column */
+.item-1 {
+    animation: slideInLeft 1s forwards;
+    animation-delay: 0.2s;
+}
 
-        /* 1st Image: Top Left */
-        .item-1 {
-            animation-name: slideInLeft;
-            animation-delay: 0.2s;
-        }
+.item-2 {
+    animation: slideInLeft 1s forwards;
+    animation-delay: 1.3s;
+}
 
-        /* 2nd Image: Top Right */
-        .item-2 {
-            animation-name: slideInRight;
-            animation-delay: 1.3s; /* Adjusted spacing for the longer slide duration */
-        }
+/* Right Column */
+.item-3 {
+    animation: slideInRight 1s forwards;
+    animation-delay: 2.4s;
+}
 
-        /* 3rd Image: Bottom Left */
-        .item-3 {
-            animation-name: slideInLeft;
-            animation-delay: 2.4s;
-        }
-
-        /* 4th Image: Bottom Right */
-        .item-4 {
-            animation-name: slideInRight;
-            animation-delay: 3.5s;
-        }
+.item-4 {
+    animation: slideInRight 1s forwards;
+    animation-delay: 3.5s;
+}
     </style>
 </head>
 <body>
